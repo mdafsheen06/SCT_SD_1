@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Panel: Conversion Console -->
+        <div class="panel console-panel">
+            <h2 class="panel-title">Temperature Converter</h2>
+            
+            <div class="input-section">
+                <label>ENTER TEMPERATURE</label>
+                <div class="input-wrapper">
+                    <input type="number" id="temperatureInput" placeholder="0" step="any">
+                    <span class="input-unit" id="inputUnitLabel">°F</span>
+                </div>
+            </div>
+
+            <div class="presets-section">
+                <label>QUICK PRESETS</label>
+                <div class="presets-grid">
+                    <button class="preset-btn" data-value="0" data-unit="celsius">
+                        <span class="preset-icon">❄️</span>
+                        <div class="preset-info">
+                            <span class="preset-name">Ice Freezes</span>
+                            <span class="preset-val">0°C</span>
+                        </div>
+                    </button>
+                    <button class="preset-btn" data-value="21" data-unit="celsius">
+                        <span class="preset-icon">🛋️</span>
+                        <div class="preset-info">
+                            <span class="preset-name">Room Temp</span>
+                            <span class="preset-val">21°C</span>
+                        </div>
+                    </button>
+                    <button class="preset-btn" data-value="37" data-unit="celsius">
+                        <span class="preset-icon">🌡️</span>
+                        <div class="preset-info">
+                            <span class="preset-name">Body Temp</span>
+                            <span class="preset-val">37°C</span>
+                        </div>
+                    </button>
+                    <button class="preset-btn" data-value="100" data-unit="celsius">
+                        <span class="preset-icon">🔥</span>
+                        <div class="preset-info">
+                            <span class="preset-name">Water Boils</span>
+                            <span class="preset-val">100°C</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="dropdowns-section">
+                <div class="dropdown-group">
+                    <label>FROM</label>
+                    <select id="unitFrom">
+                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                        <option value="celsius">Celsius (°C)</option>
+                        <option value="kelvin">Kelvin (K)</option>
+                    </select>
+                </div>
+                
+                <button id="swapBtn" class="swap-icon-btn" title="Swap Units">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 3 21 3 21 8"></polyline>
+                        <line x1="4" y1="14" x2="21" y2="3"></line>
+                        <polyline points="8 21 3 21 3 16"></polyline>
+                        <line x1="20" y1="10" x2="3" y2="21"></line>
+                    </svg>
+                </button>
+
+                <div class="dropdown-group">
+                    <label>TO</label>
+                    <select id="unitTo">
+                        <option value="celsius">Celsius (°C)</option>
+                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                        <option value="kelvin">Kelvin (K)</option>
+                    </select>
+                </div>
+            </div>
+            <button id="convertBtn" class="convert-btn">Convert</button>
+            <div id="errorMessage" class="error-message"></div>
+        </div>
+
+        <!-- Right Panel: Converted Output -->
+        <div class="panel output-panel">
+            <div class="output-header">
+                <label>CONVERTED OUTPUT</label>
+                <div class="output-value-container">
+                    <span id="outputValue" class="huge-text">--</span>
+                    <span id="outputUnit" class="huge-unit"></span>
+                </div>
+            </div>
+
+            <div class="scales-section">
+                <div class="thermometer-container">
+                    <div class="thermometer-ticks">
+                        <span>100°C</span>
+                        <span>80°C</span>
+                        <span>60°C</span>
+                        <span>40°C</span>
+                        <span>20°C</span>
+                        <span>0°C</span>
+                        <span>-20°C</span>
+                    </div>
+                    <div class="thermometer-glass">
+                        <div class="thermometer-liquid" id="thermoLiquid" style="height: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="equivalent-scales">
+                    <label>EQUIVALENT SCALES</label>
+                    <div class="scale-row" id="row-celsius">
+                        <span class="scale-name">Celsius <span class="badge badge-c">°C</span></span>
+                        <span class="scale-val" id="scale-celsius">--</span>
+                    </div>
+                    <div class="scale-row active" id="row-fahrenheit">
+                        <span class="scale-name">Fahrenheit <span class="badge badge-f">°F</span></span>
+                        <span class="scale-val" id="scale-fahrenheit">--</span>
+                    </div>
+                    <div class="scale-row" id="row-kelvin">
+                        <span class="scale-name">Kelvin <span class="badge badge-k">K</span></span>
+                        <span class="scale-val" id="scale-kelvin">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="formula-explainer">
+                <div class="explainer-header">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="9" y1="3" x2="9" y2="21"></line>
+                    </svg>
+                    <span>FORMULA EXPLAINER</span>
+                </div>
+                <div class="formula-text" id="formulaText">--</div>
+                <div class="formula-desc" id="formulaDesc">Enter a temperature to see the formula.</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

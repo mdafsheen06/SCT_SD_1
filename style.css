@@ -1,0 +1,403 @@
+/* Deep dark theme matching the screenshot */
+:root {
+    --bg-main: #0B0E14; /* Deep space dark */
+    --panel-bg: #121620; /* Slightly lighter for panels */
+    --text-main: #FFFFFF;
+    --text-muted: #8B949E;
+    --accent-blue: #00F0FF;
+    --accent-purple: #B266FF;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --input-bg: #0A0D12;
+    --btn-hover: rgba(255, 255, 255, 0.05);
+    
+    /* Thermometer colors */
+    --thermo-liquid: #00FF66;
+    
+    /* Badges */
+    --badge-c: #4488FF;
+    --badge-f: #00F0FF;
+    --badge-k: #B266FF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.app-container {
+    display: grid;
+    grid-template-columns: 420px 420px;
+    gap: 2rem;
+    max-width: 900px;
+    width: 100%;
+}
+
+.panel {
+    background-color: var(--panel-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+/* Neon Top Border Glow */
+.panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+/* Typography & Labels */
+.panel-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+/* Input Section */
+.input-section {
+    margin-bottom: 2rem;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+input[type="number"], select {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.25rem;
+    font-weight: 500;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input[type="number"]:focus, select:focus {
+    border-color: var(--accent-blue);
+}
+
+.input-unit {
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+}
+
+/* Presets Grid */
+.presets-section {
+    margin-bottom: 2rem;
+}
+
+.presets-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.preset-btn {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    color: var(--text-main);
+}
+
+.preset-btn:hover {
+    background-color: var(--btn-hover);
+    border-color: var(--text-muted);
+}
+
+.preset-icon {
+    font-size: 1.5rem;
+}
+
+.preset-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.preset-name {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.preset-val {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Dropdowns & Swap */
+.dropdowns-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.dropdown-group {
+    flex: 1;
+}
+
+select {
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem top 50%;
+    background-size: 0.65rem auto;
+}
+
+.swap-icon-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    margin-top: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.swap-icon-btn:hover {
+    color: var(--text-main);
+    background-color: var(--btn-hover);
+    transform: rotate(180deg);
+}
+
+.swap-icon-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.convert-btn {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.convert-btn:hover {
+    opacity: 0.9;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    text-align: center;
+    min-height: 1.2rem;
+}
+
+
+/* Right Panel: Output */
+.output-header {
+    background-color: var(--input-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.output-value-container {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.huge-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.huge-unit {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+}
+
+/* Scales & Thermometer Section */
+.scales-section {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.thermometer-container {
+    display: flex;
+    gap: 1rem;
+    height: 200px;
+}
+
+.thermometer-ticks {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.thermometer-glass {
+    width: 16px;
+    height: 100%;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+}
+
+.thermometer-liquid {
+    width: 100%;
+    background-color: var(--thermo-liquid);
+    border-radius: 20px;
+    transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 10px var(--thermo-liquid);
+}
+
+.equivalent-scales {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.scale-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: var(--input-bg);
+    border: 1px solid transparent;
+    border-radius: 12px;
+}
+
+.scale-row.active {
+    border-color: var(--border-color);
+    box-shadow: 0 0 15px rgba(255,255,255,0.05);
+}
+
+.scale-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.scale-val {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.badge {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.badge-c { background-color: var(--badge-c); }
+.badge-f { background-color: var(--badge-f); }
+.badge-k { background-color: var(--badge-k); }
+
+/* Formula Explainer */
+.formula-explainer {
+    background-color: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    border-radius: 12px;
+    padding: 1.25rem;
+}
+
+.explainer-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.formula-text {
+    font-size: 1.1rem;
+    font-family: monospace;
+    font-weight: 600;
+    color: var(--accent-blue);
+    margin-bottom: 0.5rem;
+}
+
+.formula-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+    .app-container {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+}
